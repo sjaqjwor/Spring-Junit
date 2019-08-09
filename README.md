@@ -1,3 +1,6 @@
 # Spring-Junit
 
-Spring을 이용한 Junit 
+자바와 JUnit을 활용한 실용주의 단위테스트
+
+
+
