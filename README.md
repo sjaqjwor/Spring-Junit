@@ -6,4 +6,3 @@
 
 * Chapter 1. 첫 번째 JUnit 테스트 만들기
 * Chapter 2.  JUnit 진짜로 써 보기
-
