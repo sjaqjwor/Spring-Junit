@@ -3,4 +3,5 @@
 * [Spring-Junit](README.md)
 * [Chapter 1. 첫 번째 JUnit 테스트 만들기](chapter1.-junit.md)
 * [Chapter 3. 단언](chapter3.-junit.md)
+* [Chapter 6. Right - BICEP : 무엇을 테스트할 것인가?](chapter-6.-right-bicep.md)
 
