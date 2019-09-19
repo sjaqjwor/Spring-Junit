@@ -8,5 +8,5 @@
 * [chapter 5. FIRST](chapter5-junit.md)
 
 * [Chapter 6. Right - BICEP : 무엇을 테스트할 것인가?](chapter-6.-right-bicep.md)
-* [Chapter 8. 깔끔한 코드로 리팩토링하기](chapter-6.-right-bicep.md)
+* [Chapter 8. 깔끔한 코드로 리팩토링하기](chapter-8.-junit.md)
 
