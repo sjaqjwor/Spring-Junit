@@ -34,11 +34,7 @@ class Profile{
 -   메서드의 복잡도를 줄여 코드가 무엇을 담당하는지 쉽게 이해하도록 구현해라
 
 ```java
- boolean match = criterion.getWeight() == Weight.DontCare || answer.match(criterion.getAnswer());
 
-private boolean matches(Criteria criterion, Answer answer){
-   return  criterion.getWeight() == Weight.DontCare || answer.match(criterion.getAnswer());
-}
 class Profile{
  public boolean matches(Criteria criteria) {
       score = 0;
@@ -49,7 +45,7 @@ class Profile{
          Answer answer = answers.get(
                criterion.getAnswer().getQuestionText()); 
          
-         boolean match = matches(criterion,answer)
+         boolean match = matches(criterion,answer);
               
          if (!match && criterion.getWeight() == Weight.MustMatch) {  
             kill = true;
@@ -63,6 +59,9 @@ class Profile{
          return false;
       return anyMatches;
    }
+   private boolean matches(Criteria criterion, Answer answer){
+      return  criterion.getWeight() == Weight.DontCare || answer.match(criterion.getAnswer());
+   }
 }
 ```
 -  저수준 메소드로 나누었기 때문에 구체적인 구현사항을 보지 않아도 네이밍만으로 유추가능
@@ -74,9 +73,6 @@ class Profile{
 
 ```java
 
-private boolean matches(Criteria criterion, Answer answer){
-   return  criterion.getWeight() == Weight.DontCare || answer.match(criterion.getAnswer());
-}
 
 class Criterion implements Scoreable{
     public boolean matches(Answer answer){
@@ -93,7 +89,6 @@ class Profile{
       for (Criterion criterion: criteria) {   
           # 요기도 문제
           # 디메테르의 법칙을을 위반
-          # 내생각으로 책에 나온 고친 부분은 별다른 바가 없다 그래서 첨부안한다.
          Answer answer = answers.get(
                criterion.getAnswer().getQuestionText()); 
          
@@ -110,6 +105,9 @@ class Profile{
       if (kill)       
          return false;
       return anyMatches;
+   }
+   private Answer answerMatching(Criterion criterion){
+     return answers.get(criterion.getAnswer().getQuestionText());
    }
 }
 ```
