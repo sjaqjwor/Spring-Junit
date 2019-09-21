@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+##Junit 단언
+-   테스트에 넣을 수 있는 정적 메소드
+-   조건이 참인지 검증하는 방법
+
+```
+@Test
+public void 나는_바보인가(){
+    철진.addStatus("바보");
+   
+=======
 # Chapter 3. 단언
 
 * 테스트에 넣을 수 있는 정적 메소드
@@ -8,6 +19,7 @@
 public void 나는_바보인가(){
     철진.addStatus("바보");
 
+>>>>>>> upstream/master
     ## 해당부분이 단언이다.
     assertTrue(철진.is바보());
 }
@@ -16,15 +28,24 @@ public void 나는_바보인가(){
 public void 키가_180보다_큰가(){
     int 키 = 180;
     승기.addStatus(190);
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> upstream/master
     ## 해당 부분이 단언이다.
     assertTrue(승기.get키() > 키)
 }
 ```
 
+<<<<<<< HEAD
+#### assertThat
+```
+=======
 ### assertThat
 
 ```text
+>>>>>>> upstream/master
 assertThat({actual},{match})
 
 ## 예제
@@ -32,6 +53,35 @@ assertThat(승기.getKey(),equalTo(187))
 승기의 키는 187과 같아야한다.
 결과 true
 ```
+<<<<<<< HEAD
+##### {actual}
+-   검증하고자 하는 값
+-   실제 값
+
+##### {match}
+-   검증하고자 하는 값과 비교하는 값
+-   equalTo에는 자바 인스턴스 및 기본형 값을 다 넣을 수 있다.
+-   다양한 단언 {match}가 존재한다.
+    -   is(boolean)
+    -   startWith 등등
+    
+
+#### 다양한 햄크래스트 매처
+-   CoreMathcers 클래스가 매처 모음을 제공
+-   다양한 햄크레스트 매처를 도입할 수록 테스트고드의 표현력이 깊어진다.
+##### 햄크래스트 매처의 역할들
+-   객체타입을 검사
+-   객체의 참조가 같은 인스턴스인지 검사
+-   다수의 매처를 결합하여 둘다 혹은 둘 중에 어떤 것이든 성공하는지 검사
+-   컬랙션이 요소를 포함하거나 조건에 부합하는지 검사
+-   컬랙션이 아이템 몇개를 모두 포함하는지 검사
+-   컬랙션에 있는 모든 요소가 매처를 준수하는지
+-   더 다양하니 API를보고 사용해라
+
+
+
+
+=======
 
 #### {actual}
 
@@ -131,4 +181,5 @@ assertThat\({message},{actual},{match}\)
    * maven에 의존성을 추가하고 사용해야한다.
 
      [http://stefanbirkner.github.io/fishbowl/download.html](http://stefanbirkner.github.io/fishbowl/download.html)
+>>>>>>> upstream/master
 
