@@ -1,6 +1,6 @@
 # Chapter 6. Right - BICEP : 무엇을 테스트할 것인가?
 
-**Right - BICEP : 무엇을 테스트하는 것이 중요한지 도와줄 수 있는 지침** 
+**Right - BICEP : 무엇을 테스트하는 것이 중요한지 도와줄 수 있는 지침**
 
 * Right : 결과가 올바른가?
 * B : 경계 조건\(boundary condition\)은 맞는가?
@@ -21,16 +21,16 @@ public void answersArithmeticMeanOfTwoNumbers() {
     ScoreCollection collection = new ScoreCollection();
     collection.add(() -> 5);
     collection.add(() -> 7);
-    
+
     int actualResult = collection.arithmeticMean();
-    
+
     assertThat(actualResult, equalTo(6));
 }
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
- 해당 예시코드에서 더 많은 수들이나 혹은 큰 수들을 넣어 테스트를 해볼 수 있지만 Right에서 말하고자 하는 것은 내가 이 코드의 시나리오에 대해 정확히 이해하고 있는가이다. 그러니 예상되는 결과 값을 개발자 자신이 이해하고 있어야한다는 것이고 예상하지 못한다면 잠시 개발을 보류하는 것도 좋다.
+해당 예시코드에서 더 많은 수들이나 혹은 큰 수들을 넣어 테스트를 해볼 수 있지만 Right에서 말하고자 하는 것은 내가 이 코드의 시나리오에 대해 정확히 이해하고 있는가이다. 그러니 예상되는 결과 값을 개발자 자신이 이해하고 있어야한다는 것이고 예상하지 못한다면 잠시 개발을 보류하는 것도 좋다.
 
 하지만 모든 요구사항이 명확하지 않고 중간에 변경되는 경우도 많기 때문에 개발자가 자신의 판단으로 최선의 판단을 해야한다.
 
@@ -58,8 +58,6 @@ public void answersArithmeticMeanOfTwoNumbers() {
 
 코너 케이스는 오류가 발생하는 상황을 재현하기가 쉽지 않아 디버그와 테스트가 어렵다.
 
-
-
 코너케이스와 엣지케이스가 무엇인지 정리를 했으니 우리가 생각해야하는 경계 조건들을 살펴보자
 
 * 모호하고 일관성 없는 입력 값. 예를 들어 특수 문자가 포함된 파일이름
@@ -78,11 +76,11 @@ import java.util.*;
 
 public class ScoreCollection {
     private List<Scoreable> scores = new ArrayList<>();
-    
+
     public void add(Scoreable scoreable) {
         scores.add(scoreable);
     }
-    
+
     public int arithmeticMean() {
         int total = scores.stream().mapToInt(scorealbe::getScore).sum();
         return total / scores.size();
@@ -93,8 +91,6 @@ public class ScoreCollection {
 {% endcode-tabs %}
 
 위 코드는 1장에서 나왔던 코드이다. 그다지 문제는 없어보이지만 경계 조건을 보면서 살펴보자
-
-#### 
 
 #### Problem 1. 입력된 Scoreable 인스턴스가 null일 경우
 
@@ -124,12 +120,6 @@ public void add(Scoreable scoreable) {
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
-
-
-
-#### 
-
-#### 
 
 #### Problem 2. 0으로 나누어 나는 오류
 
@@ -163,12 +153,6 @@ public int arithmeticMean() {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-
-
-
-
-
-
 #### Problem 3.  큰 정수 입력을 다루어 숫자들의 합이 Integer.MAX\_VALUE를 초과하는 경우
 
 {% code-tabs %}
@@ -178,7 +162,7 @@ public int arithmeticMean() {
 public void dealsWithIntegerOverflow() {
     collection.add(() -> Integer.MAX_VALUE);
     collection.add(() -> 1);
-    
+
     assertThat(collection.arithmeticMean, equalTo(1073741824))
 }
 ```
@@ -200,7 +184,7 @@ return (int)(total / scores.size());
 
 long타입에서 int타입으로 다운 캐스팅이 이루어졌다. 무언가 추가적인 검사를 해야 할 것처럼 보이지만 그렇지 않다. add\(\) 메서드에서는 개별 입력 값을 int 타입으로 한정하고 개수만큼 나누게 되면 int 최댓값보다 작은 값만 반환할 수 밖에 없다.
 
-클래스를 설계할 때 이러한 잠재적인 정수 오버플로 등을 고려할지 여부는 전적으로 개발자 몫이다. 클래스가 외부에서 호출하는 API이고 클라이언트를 완전히 믿을 수 없다면 위와 같은 보호가 필요하지만 클라이언트가 같은 팀 소속이라면 보호절을 제거하고 클라이언트 측에게 이러한 사실을 알려도 된다. 불필요한 검사절을 줄여주기 때문이다. 
+클래스를 설계할 때 이러한 잠재적인 정수 오버플로 등을 고려할지 여부는 전적으로 개발자 몫이다. 클래스가 외부에서 호출하는 API이고 클라이언트를 완전히 믿을 수 없다면 위와 같은 보호가 필요하지만 클라이언트가 같은 팀 소속이라면 보호절을 제거하고 클라이언트 측에게 이러한 사실을 알려도 된다. 불필요한 검사절을 줄여주기 때문이다.
 
 보호절을 제거하는 선택을 했다면 주석을 통해 경고를 남겨도 괜찮지만 더 좋은 방법은 코드 제한 사항을 문서화하는 테스트를 추가하는 이다.
 
@@ -220,9 +204,9 @@ CORRECT 약어는 잠재적인 경계 조건을 기억하는 데 도움이 된�
 
 ## 6.4 Right - B\[I\]CEP : 역 관계를 검사할 수 있는가?
 
-때때로 논리적인 역 관계를 적용하여 검사할 수 있다. 무슨말이냐 하면 우리가 수학에서 곱셈으로 나눗셈을 검증하고 뺄셈으로 덧셈을 검증하는 것과 같은 말이다. 
+때때로 논리적인 역 관계를 적용하여 검사할 수 있다. 무슨말이냐 하면 우리가 수학에서 곱셈으로 나눗셈을 검증하고 뺄셈으로 덧셈을 검증하는 것과 같은 말이다.
 
-우리는 뉴턴의 알고리즘을 활용해서 제곱근을 구한다. 어떤 숫자의 제곱근을 유도하고 그 결과를 제곱하면\(즉, 자기 자신을 곱하면\)  우리가 시작했던 값과 같은 숫자를 얻어야 함을 기억하고 다음의 코드를 보자.
+우리는 뉴턴의 알고리즘을 활용해서 제곱근을 구한다. 어떤 숫자의 제곱근을 유도하고 그 결과를 제곱하면\(즉, 자기 자신을 곱하면\) 우리가 시작했던 값과 같은 숫자를 얻어야 함을 기억하고 다음의 코드를 보자.
 
 {% code-tabs %}
 {% code-tabs-item title="NewtonTest.java" %}
@@ -235,7 +219,7 @@ import static java.lang.MAth.abs;
 public class NewtonTest {
     static class Newton {
         private static final double TOLERANCE = 1E-16;
-        
+
         public static double squareRoot(double n) {
             double approx = n;
             while(abs(approx - n / approx) > TOLERANCE * approx) {
@@ -244,7 +228,7 @@ public class NewtonTest {
             return approx;
         }
     }
-    
+
     @Test
     public void squareRoot() {
         double result = Newton.squareRoot(250.0);
@@ -274,7 +258,7 @@ assertThat(Newton.squareRoot(1969.0), closeTo(Math.sqrt(1969.0), Newton.TOLERANC
 
 ## 6.6 Right - BIC\[E\]P : 오류 조건을 강제로 일어나게 할 수 있는가?
 
-위처럼 유효하지 않은 인자들을 다루는 것은 쉽다고 볼 수 있지만 또 다른 문제들이 있다. 예를 들어 디스크가 꽉 차거나, 네트워크 선이 떨어지거나 하는 문제들말이다. 이러한 특정 네트워크 오류를 시뮬레이션 하려면 특별한 기법이 필요한데 그에 대한 한 가지 방법을 10.1 장에서 다뤄볼 예정이다. 
+위처럼 유효하지 않은 인자들을 다루는 것은 쉽다고 볼 수 있지만 또 다른 문제들이 있다. 예를 들어 디스크가 꽉 차거나, 네트워크 선이 떨어지거나 하는 문제들말이다. 이러한 특정 네트워크 오류를 시뮬레이션 하려면 특별한 기법이 필요한데 그에 대한 한 가지 방법을 10.1 장에서 다뤄볼 예정이다.
 
 하지만 먼저 우리가 고려해야할 환경적인 제약 사항들이 어떤 것들이 있는지 보자.
 
@@ -338,5 +322,5 @@ private long run(int times, Runnable func) {
 * 최적화되지 않은 테스트는 일반적인 테스트 코드보다 매우 느리기 때문에 분리해서 해봐야한다. 성능이 떨어지는 테스트 코드를 추가하여 전체 테스트 시간이 늘어나는 것은 좋지 못한 방법이다.
 * 동일한 머신이라도 실행 시간은 시스템 로드처럼 잡다한 요소에 따라 달라질 수 있다.
 
-물론 단위 성능 측적은 변경하고 시간을 측정하고 하는 반복적인 테스트들을 통해 비교하고 개선해 나가는 방법이며 성능이 핵심 고려 사항이라면 당연히 성능 측정 도구를 사용하는 것도 좋은 방법이다. 
+물론 단위 성능 측적은 변경하고 시간을 측정하고 하는 반복적인 테스트들을 통해 비교하고 개선해 나가는 방법이며 성능이 핵심 고려 사항이라면 당연히 성능 측정 도구를 사용하는 것도 좋은 방법이다.
 
