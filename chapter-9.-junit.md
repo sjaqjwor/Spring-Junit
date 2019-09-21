@@ -5,7 +5,8 @@
 {% code-tabs %}
 {% code-tabs-item title="Profile.java" %}
 ```java
-/***
+
+/***
  * Excerpted from "Pragmatic Unit Testing in Java with JUnit",
  * published by The Pragmatic Bookshelf.
  * Copyrights apply to this code. It may not be used to create training material, 
