@@ -17,7 +17,7 @@
 
 * 단위 테스트를 작성할 때는 먼저 전체적인 시각에서 시작해야함. \( 개별 매서드를 테스트하는것이 아니라 종합적인 동작을 테스트 해야한다 \)
 
-EX \) 은행의 ATM 클래스 
+EX \) 은행의 ATM 클래스
 
 deposit\(\), withdraw\(\), getValance\(\) 모두를 테스트 하기 위해서는 getBalance\(\) 메서드를 호출 해야함.
 
@@ -30,10 +30,9 @@ getBalance\(\) 메소드만 테스트하는것은 불필요 &gt; 입금과 출�
 * 테스트 포함하면 JAR 파일이 부풀어짐\(약간의 성능 저하\)
 * 코드 베이스의 공격 표면이 늘어남
 * 세가지의 선택지 존재
-
-1.  테스트를 프로덕션 코드와 같은 디렉터리 및 패키지에 넣기 \( 배포 시 걷어 내는 스크립트 필요 \)
-2. 테스트를 별도 디렉터리로 분리하지만 프로덕션 코드와 같은 패키지에 넣기 \( 이클립스와 메이븐 같은 도구는 이 모델을 권장 \)
-3. 테스트를 별도의 디렉터리와 유사한 패키지에 유지하기
+* 테스트를 프로덕션 코드와 같은 디렉터리 및 패키지에 넣기 \( 배포 시 걷어 내는 스크립트 필요 \)
+* 테스트를 별도 디렉터리로 분리하지만 프로덕션 코드와 같은 패키지에 넣기 \( 이클립스와 메이븐 같은 도구는 이 모델을 권장 \)
+* 테스트를 별도의 디렉터리와 유사한 패키지에 유지하기
 
 ![](.gitbook/assets/undefined.PNG)
 
@@ -50,7 +49,7 @@ getBalance\(\) 메소드만 테스트하는것은 불필요 &gt; 입금과 출�
 {% hint style="info" %}
 단일 책임 원칙 \(SRP, Single Responsibility Principle \)
 
-어떤 클래스가 작고 단일 목적을 가져야 함을 의미하며, 가장 좋은 해결책은 흥미로운 private  메소드를 추출하여 다른 클래스로 이동 &gt; 클래스의 유용한 public 메서드가 됨.
+어떤 클래스가 작고 단일 목적을 가져야 함을 의미하며, 가장 좋은 해결책은 흥미로운 private 메소드를 추출하여 다른 클래스로 이동 &gt; 클래스의 유용한 public 메서드가 됨.
 {% endhint %}
 
 ## 4.4 집중적인 단일 목적 테스트의 가치
@@ -68,7 +67,7 @@ public void matches() {
          new Criterion(new Answer(question, Bool.TRUE), Weight.MustMatch));
 
    assertFalse(profile.matches(criteria));
-      
+
    // don't care 항목에 대해서는 true
    profile.add(new Answer(question, Bool.FALSE));      
    criteria = new Criteria();
@@ -90,21 +89,19 @@ matches 메서드에 넣을 수 있으나, JUnit이 제공하는 테스트 고�
 ## 4.5 문서로서의 테스트
 
 * 4.5.1 일관성 있는 이름으로 테스트 문서화
-
-1. doingSomeOperationGeneratesSomeResult \( 어떤 동작을 하면 어떤 결과가 나온다 \)       
-2. someResultOccursUnderSomeCondition \( 어떤 결과는 어떤 조건에서 발생한다. \)
-3. givenSomeContextWhenDoingSomeBehaviorThenSomeResultOccurs \( 주어진 조건에서 어떤 일을 하면 어떤 결과가 나온다. \)
-4. whenDoingSomeBehaviorThenSomeResultOccurs \( 어떤 일을 하면 어떤 결과가 나온다. \)
+* doingSomeOperationGeneratesSomeResult \( 어떤 동작을 하면 어떤 결과가 나온다 \)
+* someResultOccursUnderSomeCondition \( 어떤 결과는 어떤 조건에서 발생한다. \)
+* givenSomeContextWhenDoingSomeBehaviorThenSomeResultOccurs \( 주어진 조건에서 어떤 일을 하면 어떤 결과가 나온다. \)
+* whenDoingSomeBehaviorThenSomeResultOccurs \( 어떤 일을 하면 어떤 결과가 나온다. \)
 
 -&gt; 한글 메소드로 만들면 한국에서는 알기 쉽고 편할듯
 
 * 4.5.2 테스트를 의미 있게 만들기 \( 주석 뿐만 아니라 이름 개선 \)
-
-1. 지역 변수 이름 개선
-2. 의미 있는 상수 도입
-3. 햄크레스트 단언 사용
-4. 커다란 테스트를 작게 나누어 집중적인 테스트 만들기
-5. 테스트 군더더기들을 도우미 메서드와 @Before 메서드로 이동하기
+* 지역 변수 이름 개선
+* 의미 있는 상수 도입
+* 햄크레스트 단언 사용
+* 커다란 테스트를 작게 나누어 집중적인 테스트 만들기
+* 테스트 군더더기들을 도우미 메서드와 @Before 메서드로 이동하기
 
 ## 4.6 @Before와 @After \(공통 초기화와 정리\) 더 알기
 
@@ -119,27 +116,27 @@ public class AssertMoreTest {
    public static void initializeSomethingReallyExpensive() {
       // ...
    }
-   
+
    @AfterClass
    public static void cleanUpSomethingReallyExpensive() {
       // ...
    }
-   
+
    @Before
    public void createAccount() {
       // ...
    }
-   
+
    @After
    public void closeConnections() {
       // ...
    }
-   
+
    @Test
    public void depositIncreasesBalance() {
       // ...
    }
-   
+
    @Test
    public void hasPositiveBalance() {
       // ...
@@ -168,18 +165,14 @@ AssertMoreTest 클래스를 JUnit으로 실행한 흐름
 ## 4.7 녹색이 좋다: 테스트를 의미 있게 유지
 
 * 4.7.1 테스트를 빠르게
+  1. 필요하다고 생각하는 테스트만 실행 \( 피드백을 받지 않는 기간이 길어지면 애플리케이션에서 어떤 부분을 깨뜨리는 코드를 작성할 확률이 늘어남. \)
+  2. 데이터베이스처럼 느린 자원을 통제하는 부분이 없다면 수초 안에 수천 개의 테스트를 실행
 
-        1. 필요하다고 생각하는 테스트만 실행 \( 피드백을 받지 않는 기간이 길어지면 애플리케이션에서 어떤     부분을 깨뜨리는 코드를 작성할 확률이 늘어남. \)
+     하는것이 가능 \( 목 객체 활용 \)
 
-        2. 데이터베이스처럼 느린 자원을 통제하는 부분이 없다면 수초 안에 수천 개의 테스트를 실행
-
-            하는것이 가능 \( 목 객체 활용 \)
-
-        3. 외부 자원에 접근하는 테스트가 많아진다면 느려짐 \( JUnit은 Categories 기능 제공 \) 
-
+  3. 외부 자원에 접근하는 테스트가 많아진다면 느려짐 \( JUnit은 Categories 기능 제공 \)
 * 4.7.2 테스트 제외 \( @Ignore 애너테이션 사용 \)
-
-         1. 문제가 있는 테스트에 집중하고 다른 실패 테스트는 주석 처리 \( 주석보다 나은 메커니즘 제공 \)
+  1. 문제가 있는 테스트에 집중하고 다른 실패 테스트는 주석 처리 \( 주석보다 나은 메커니즘 제공 \)
 
 ```java
 @Test
