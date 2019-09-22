@@ -7,7 +7,7 @@
 * [Chapter 4. 테스트 조직](chapter4-junit.md)
 * [chapter 5. FIRST](chapter5-junit.md)
 * [Chapter 6. Right - BICEP : 무엇을 테스트할 것인가?](chapter-6.-right-bicep.md)
-* [chapter 7. Correct 기법](chapter7-junit.md)
+* [chapter 7. Correct 기법](chapter7.-junit.md)
 * [Chapter 8. 깔끔한 코드로 리팩토링하기](chapter-8.-junit.md)
 * [Chapter 9. 더 큰 설계 문제](chapter9.-junit.md)
 * [Chapter 10. 목 객체 사용](chapter10-junit.md)
