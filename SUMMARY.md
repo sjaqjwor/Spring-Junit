@@ -6,3 +6,4 @@
 * [Chapter 3. 단언](chapter3.-junit.md)
 * [Chapter 4. 테스트 조직](chapter4-junit.md)
 * [chapter 5. FIRST](chapter5-junit.md)
+* [chapter 7. Correct 기법](chapter7-junit.md)
