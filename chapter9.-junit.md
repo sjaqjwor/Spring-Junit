@@ -5,7 +5,6 @@
 {% code-tabs %}
 {% code-tabs-item title="Profile.java" %}
 ```java
-
 /***
  * Excerpted from "Pragmatic Unit Testing in Java with JUnit",
  * published by The Pragmatic Bookshelf.
@@ -29,7 +28,7 @@ public class Profile {
    public Profile(String name) {
       this.name = name;
    }
-   
+
    public String getName() {
       return name;
    }
@@ -83,7 +82,7 @@ public class Profile {
             results.add(answer);
       return results;
    }
-   
+
    @Override
    public String toString() {
      return name;
@@ -95,12 +94,11 @@ public class Profile {
             .collect(Collectors.toList());
    }
 }
-
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-이상적이지 않은 설계  
+이상적이지 않은 설계
 
 * 회사 혹은 인물 정보를 추적하고 관리
 * 조건의 집합이 프로파일과 매칭되는지 여부 혹은 그 정도를 알려주는 점수 계산
@@ -357,7 +355,6 @@ public class MatchSetTest {
    // TODO: missing functionality--what if there is no matching profile answer for a criterion?
 
 }
-
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
@@ -392,7 +389,7 @@ Score 필드 삭제, calculateScore\(\) 메서드는 getScore\(\) 매서드 내�
 >
 > Profile 클래스에서 질문 내용을 키로 사용하는 Map&lt;String, Answer&gt; 객체 생성
 >
-> 동시에 answers 맴 참조를 새로 생성되는 matchSet 객체로 넘김 
+> 동시에 answers 맴 참조를 새로 생성되는 matchSet 객체로 넘김
 >
 > 두 클래스가 어떻게 답변을 탐색하고 점수를 구하는지에 대한 정보를 너무 많이 가지고 있다는 의미
 >
@@ -407,6 +404,4 @@ Score 필드 삭제, calculateScore\(\) 메서드는 getScore\(\) 매서드 내�
 
 [https://lktprogrammer.tistory.com/58](https://lktprogrammer.tistory.com/58)
 {% endhint %}
-
-
 

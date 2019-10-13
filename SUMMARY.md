@@ -11,3 +11,5 @@
 * [Chapter 8. 깔끔한 코드로 리팩토링하기](chapter-8.-junit.md)
 * [Chapter 9. 더 큰 설계 문제](chapter9.-junit.md)
 * [Chapter 10. 목 객체 사용](chapter10-junit.md)
+* [Chapter 11. 테스트 리팩토링](chapter-11..md)
+

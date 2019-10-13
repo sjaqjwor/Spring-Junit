@@ -1,13 +1,13 @@
 # Chapter 2. JUnit 진짜로 써 보기
 
-테스트 배치에 대한 구조   
- **준비-실행-단언\(AAA, Arrange-Act-Assert\)**
+테스트 배치에 대한 구조  
+**준비-실행-단언\(AAA, Arrange-Act-Assert\)**
 
 아래의 Profile.java 는 테스트 대상의 코드입니다.  
- 회사, 구직자의 질문 답변을 가지고 각각이 원하는 인재 , 원하는 회사인지 선별해주는 코드입니다.
+회사, 구직자의 질문 답변을 가지고 각각이 원하는 인재 , 원하는 회사인지 선별해주는 코드입니다.
 
 \*기타 부가적인 코드는 아래의 깃헙주소에서 확인 할 수 있습니다.  
- [github](https://github.com/gilbutITbook/006814/tree/master/iloveyouboss_06)
+[github](https://github.com/gilbutITbook/006814/tree/master/iloveyouboss_06)
 
 ```java
 public class Profile {
@@ -58,8 +58,7 @@ public class Profile {
 }
 ```
 
-위에 코드에 테스트 케이스를 테스트 코드로 작성해보도록 하겠습니다.  
-
+위에 코드에 테스트 케이스를 테스트 코드로 작성해보도록 하겠습니다.
 
 ```java
 import org.junit.Test;
@@ -107,20 +106,17 @@ public class ProfileTest {
 
 Junit 테스트를 실행할 때마다 @Before 애너테이션으로 선언한 메서드를 먼저 실행하므로 테스트 하기전에 초기화해야하는 로직 OR 공통 로직에 선언합니다.
 
-아래와 같이 **@Before** 애너테이션으로 공통부분을 초기화 하므로서 코드가 훨씬 간결해진 것을 확인 할 수 있습니다.  
+아래와 같이 **@Before** 애너테이션으로 공통부분을 초기화 하므로서 코드가 훨씬 간결해진 것을 확인 할 수 있습니다.
 
+테스트마다 새로운 인스턴스를 생성하여 테스트를 진행하기 때문에 아래의 순서로 실행이 됩니다.
 
-테스트마다 새로운 인스턴스를 생성하여 테스트를 진행하기 때문에 아래의 순서로 실행이 됩니다.  
+1.@Before 메서드를 호출하여 초기화
 
+2.matchAnswersFalseWhenMustMatchCriteriaNotMet\(\) 메서드 테스트
 
-1.@Before 메서드를 호출하여 초기화  
-   
- 2.matchAnswersFalseWhenMustMatchCriteriaNotMet\(\) 메서드 테스트  
-   
- 3.@Before 메서드를 호출하여 초기화  
-   
- 4.matchAnswersTrueForAnyDontCareCriteria\(\) 메서드 테스트  
+3.@Before 메서드를 호출하여 초기화
 
+4.matchAnswersTrueForAnyDontCareCriteria\(\) 메서드 테스트
 
 {% code-tabs %}
 {% code-tabs-item title="Scoreable.java" %}
